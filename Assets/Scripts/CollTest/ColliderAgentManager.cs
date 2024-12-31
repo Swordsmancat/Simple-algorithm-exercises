@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Stree;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,18 +70,16 @@ namespace Assets.Scripts.CollTest
         // |v1'| =|v1| +(2*m2/(m1+m2))*(|v2|-|v1|,|x2|-|x1|)/(||x2|-|x1||^2)*(|x2|-|x1|)
         public void CheckAgentCollider()
         {
-            foreach (var agent in _agents)
+            for (int i = 0; i < _agents.Count; i++)
             {
-                foreach (var other in _agents)
+                for (int j = i; j < _agents.Count; j++)
                 {
-                    if (agent.Equals(other))
-                    {
-                        continue;
-                    }
-
-                    var dis =Vector3.Distance(agent.transform.position, other.transform.position);
+                    var agent = _agents[i];
+                    var other = _agents[j];
+                    var dis = Vector3.Distance(agent.transform.position, other.transform.position);
                     if (dis <= agent.Radius + other.Radius)
                     {
+
                         var overlap = dis - (agent.Radius + other.Radius);
                         var dir = other.transform.position - agent.transform.position;
                         dir = Vector3.Normalize(dir) * (overlap * 0.5f);
@@ -88,29 +87,41 @@ namespace Assets.Scripts.CollTest
                         agent.transform.position += dir;
                         other.transform.position -= dir;
 
-                        var d = agent.Radius+other.Radius;
+                        var d = agent.Radius + other.Radius;
                         var agentVel = agent.Velocity;
 
                         var subDir = other.transform.position - agent.transform.position;
                         var subVel = other.Velocity - agent.Velocity;
                         var subMas = 2 * other.Mass / (agent.Mass + other.Mass);
-                        var newVel = Vector3.Dot(subVel, subDir) /(d * d) * subDir;
-                        newVel = agent.Velocity+ subMas*newVel;
+                        var newVel = Vector3.Dot(subVel, subDir) / (d * d) * subDir;
+                        newVel = agent.Velocity + subMas * newVel;
                         agent.Velocity = newVel;
 
 
                         //TODO:将原本的数据复制出来，使用初始值进行计算
-                         subDir = agent.transform.position-other.transform.position;
-                         subVel = agentVel - other.Velocity;
+                        subDir = agent.transform.position - other.transform.position;
+                        subVel = agentVel - other.Velocity;
                         subMas = 2 * agent.Mass / (agent.Mass + other.Mass);
                         newVel = Vector3.Dot(subVel, subDir) / (d * d) * subDir;
-                        newVel = other.Velocity + subMas* newVel;
+                        newVel = other.Velocity + subMas * newVel;
                         other.Velocity = newVel;
 
                     }
-
                 }
             }
+            //foreach (var agent in _agents)
+            //{
+            //    foreach (var other in _agents)
+            //    {
+            //        if (agent.Equals(other))
+            //        {
+            //            continue;
+            //        }
+
+
+
+            //    }
+            //}
         }
 
         public void CreateAgent()
