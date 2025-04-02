@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -9,7 +10,7 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-
+     
         }
 
         // Update is called once per frame

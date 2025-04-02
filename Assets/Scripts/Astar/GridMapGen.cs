@@ -48,6 +48,10 @@ public class GridMapGen : Editor
 
         }
 
+        if (GUILayout.Button("JPS"))
+        {
+            map.StartJPSFind();
+        }
         
     }
 }

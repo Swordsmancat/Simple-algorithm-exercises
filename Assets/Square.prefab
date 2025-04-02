@@ -288,10 +288,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2707288618594399748}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197bd0b9bacfb8f4fa96971fee42282f, type: 3}
+  m_Script: {fileID: 11500000, guid: d93ccc9d95cb5954f81711e30192b779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Index: 0
   m_Text: {fileID: 2874580620843884101}
+  _gridType: 0
+  Point:
+    x: 0
+    y: 0
+  Dis: 0
+  G: 0
+  H: 0
+  F: 0
 --- !u!65 &-3852045637412290612
 BoxCollider:
   m_ObjectHideFlags: 0

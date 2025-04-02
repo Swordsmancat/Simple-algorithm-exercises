@@ -1,0 +1,21 @@
+{
+    "name": "TAO.VertexAnimation.Editor",
+    "rootNamespace": "TAO.VertexAnimation.Editor",
+    "references": [
+        "TAO.VertexAnimation",
+        "Unity.Collections",
+        "Unity.Entities",
+        "Unity.Entities.Hybrid"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

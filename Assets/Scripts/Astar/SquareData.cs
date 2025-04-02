@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -10,9 +12,10 @@ public enum GridType
     path,
     Obs,
     Search,
+    Jump
 }
 
-public class SquareData : MonoBehaviour
+public class SquareData : MonoBehaviour //, IComparable<SquareData>
 {
     public int Index;
 
@@ -28,9 +31,14 @@ public class SquareData : MonoBehaviour
 
     public float G;
 
+    public float Cost;
+
     public float H;
 
     public float F;
+
+    public SquareData Parent;
+
 
     private void Start()
     {
@@ -61,6 +69,9 @@ public class SquareData : MonoBehaviour
             case GridType.Search:
                 m_SpriteRenderer.color = Color.gray;
                 break;
+            case GridType.Jump:
+                m_SpriteRenderer.color = Color.black;
+                break;
             default:
                 break;
         }
@@ -71,4 +82,12 @@ public class SquareData : MonoBehaviour
         m_Text.text = $"{Dis} \n ({pos.x},{pos.y})";
     }
 
+
+    //public int CompareTo(SquareData other)
+    //{
+    //    int fCompare = F.CompareTo(other.F);
+    //    if (fCompare != 0)
+    //        return fCompare;
+    //    return H.CompareTo(other.H);
+    //}
 }
